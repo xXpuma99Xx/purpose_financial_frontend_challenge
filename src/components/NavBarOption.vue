@@ -24,7 +24,6 @@ export default defineComponent({
     const active = ref<boolean>(false);
     const updateActiveState = () => (active.value = route.path === props.route);
 
-    // Watch for changes in route.path
     watch(() => route.path, updateActiveState, { immediate: true });
 
     return {

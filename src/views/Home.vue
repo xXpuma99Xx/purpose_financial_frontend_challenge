@@ -1,9 +1,9 @@
 <template>
-  <HelloWorld msg="Vite + Vue" />
+  <UsersTable />
 </template>
 
 <script setup lang="ts">
-import HelloWorld from "../components/HelloWorld.vue";
+import UsersTable from "../components/UsersTable.vue";
 </script>
 
 <style scoped></style>
