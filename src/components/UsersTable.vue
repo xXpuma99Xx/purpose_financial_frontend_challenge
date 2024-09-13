@@ -10,27 +10,70 @@
 
     <TableBody class="bg-white divide-y divide-gray-200">
       <TableBodyRow v-for="(user, index) in users" :key="index" :index="index">
-        <TableBodyCell>
-          <Typography>{{ user.name }}</Typography>
-        </TableBodyCell>
+        <template #main>
+          <TableBodyCell>
+            <Typography>{{ user.name }}</Typography>
+          </TableBodyCell>
 
-        <TableBodyCell>
-          <Typography>{{ user.username }}</Typography>
-        </TableBodyCell>
+          <TableBodyCell>
+            <Typography>{{ user.username }}</Typography>
+          </TableBodyCell>
 
-        <TableBodyCell>
-          <Typography>{{ user.email }}</Typography>
-        </TableBodyCell>
+          <TableBodyCell>
+            <Typography>{{ user.email }}</Typography>
+          </TableBodyCell>
 
-        <TableBodyCell>
-          <Typography underline>Ver detalles</Typography>
-        </TableBodyCell>
+          <TableBodyCell>
+            <Typography @click="masDetalles(index)" underline>
+              Ver detalles
+            </Typography>
+          </TableBodyCell>
 
-        <TableBodyCell>
-          <Button variant="danger" size="small" :onclick="() => eliminar(user)">
-            Eliminar
-          </Button>
-        </TableBodyCell>
+          <TableBodyCell>
+            <Button variant="danger" size="small" @click="eliminar(user)">
+              Eliminar
+            </Button>
+          </TableBodyCell>
+        </template>
+
+        <template #details>
+          <TableBodyCell
+            colspan="5"
+            class="bg-gray-50"
+            v-if="filaExpandida === index"
+          >
+            <Typography variant="h5" align="center">
+              Detalles adicionales
+            </Typography>
+
+            <Typography><strong>Teléfono:</strong> {{ user.phone }}</Typography>
+
+            <Typography>
+              <strong>Website:</strong> {{ user.website }}</Typography
+            >
+
+            <Typography>
+              <strong>Empresa:</strong> {{ user.company.name }}
+            </Typography>
+
+            <Typography><strong>Dirección:</strong></Typography>
+
+            <Typography>
+              {{ user.address.street }}, {{ user.address.suite }}
+            </Typography>
+
+            <Typography>
+              {{ user.address.city }}, {{ user.address.zipcode }}
+            </Typography>
+
+            <Typography><strong>Geolocalización:</strong></Typography>
+
+            <Typography>
+              Latitud: {{ user.address.geo.lat }}, Longitud:
+              {{ user.address.geo.lng }}
+            </Typography>
+          </TableBodyCell>
+        </template>
       </TableBodyRow>
     </TableBody>
   </Table>
@@ -67,11 +110,15 @@ export default defineComponent({
     return {
       users: null as User[] | null,
       tableHeaders: ["Name", "Username", "Email", "Details", ""],
+      filaExpandida: null as number | null,
     };
   },
   methods: {
     eliminar: (user: User) => {
       console.log(`Eliminar ${user.id}`);
+    },
+    masDetalles(index: number) {
+      this.filaExpandida = this.filaExpandida === index ? null : index;
     },
   },
   async created() {

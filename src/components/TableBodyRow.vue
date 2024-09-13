@@ -1,6 +1,10 @@
 <template>
   <tr :class="['hover:bg-gray-200', index % 2 === 0 ? 'bg-gray-100' : '']">
-    <slot></slot>
+    <slot name="main"></slot>
+  </tr>
+
+  <tr v-if="$slots.details">
+    <slot name="details"></slot>
   </tr>
 </template>
 
