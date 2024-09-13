@@ -1,5 +1,7 @@
 <template>
-  <Table class="min-w-full divide-y divide-gray-200">
+  <Loader v-if="isLoading" />
+
+  <Table class="min-w-full divide-y divide-gray-200" v-else>
     <TableHeader>
       <TableHeaderCell
         v-for="(header, index) in tableHeaders"
@@ -92,12 +94,14 @@ import TableBodyRow from "./table/TableBodyRow.vue";
 import TableHeader from "./table/TableHeader.vue";
 import TableHeaderCell from "./table/TableHeaderCell.vue";
 import Typography from "./common/Typography.vue";
+import Loader from "./common/Loader.vue";
 
 export default defineComponent({
   name: "UsersTable",
   components: {
     Box,
     Button,
+    Loader,
     Table,
     TableBody,
     TableBodyCell,
@@ -108,12 +112,19 @@ export default defineComponent({
   },
   data() {
     return {
+      isLoading: false,
       users: [] as User[],
       tableHeaders: ["Name", "Username", "Email", "Details", ""],
       filaExpandida: null as number | null,
     };
   },
   methods: {
+    cargando() {
+      this.isLoading = true;
+    },
+    detenerCarga() {
+      this.isLoading = false;
+    },
     eliminar(index: number) {
       if (index > -1) this.users.splice(index, 1);
       this.filaExpandida = null;
@@ -129,6 +140,8 @@ export default defineComponent({
     },
   },
   async created() {
+    this.cargando();
+
     const storedData = localStorage.getItem("data");
 
     if (storedData) {
@@ -150,6 +163,7 @@ export default defineComponent({
       this.users = await getUsers<User[]>("/users");
       this.saveData();
     }
+    this.detenerCarga();
   },
 });
 </script>

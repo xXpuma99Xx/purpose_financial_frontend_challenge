@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import UsersTable from "../components/UsersTable.vue";
 import { defineComponent } from "vue";
+import UsersTable from "../components/UsersTable.vue";
 
 export default defineComponent({
   name: "Home",
