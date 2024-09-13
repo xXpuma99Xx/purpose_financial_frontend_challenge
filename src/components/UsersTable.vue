@@ -49,8 +49,8 @@
             <Typography><strong>Teléfono:</strong> {{ user.phone }}</Typography>
 
             <Typography>
-              <strong>Website:</strong> {{ user.website }}</Typography
-            >
+              <strong>Website:</strong> {{ user.website }}
+            </Typography>
 
             <Typography>
               <strong>Empresa:</strong> {{ user.company.name }}
@@ -85,12 +85,12 @@ import { User } from "../types";
 import { getUsers } from "../services/usersHTTP";
 import Box from "./common/Box.vue";
 import Button from "./common/Button.vue";
-import Table from "./Table/Table.vue";
-import TableBody from "./Table/TableBody.vue";
-import TableBodyCell from "./Table/TableBodyCell.vue";
-import TableBodyRow from "./Table/TableBodyRow.vue";
-import TableHeader from "./Table/TableHeader.vue";
-import TableHeaderCell from "./Table/TableHeaderCell.vue";
+import Table from "./table/Table.vue";
+import TableBody from "./table/TableBody.vue";
+import TableBodyCell from "./table/TableBodyCell.vue";
+import TableBodyRow from "./table/TableBodyRow.vue";
+import TableHeader from "./table/TableHeader.vue";
+import TableHeaderCell from "./table/TableHeaderCell.vue";
 import Typography from "./common/Typography.vue";
 
 export default defineComponent({
