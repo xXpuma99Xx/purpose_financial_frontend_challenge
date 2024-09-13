@@ -1,5 +1,28 @@
-# Vue 3 + TypeScript + Vite
+# Prueba Técnica
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Este proyecto requiere Node.js 18.x o superior. Para una compatibilidad óptima, se recomienda usar la versión 22.2.0, en la que fue desarrollado el proyecto.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+Se recomienda usar [nvm](https://github.com/nvm-sh/nvm) para gestionar la versión de Node.js. Puedes instalar y usar la versión recomendada con los siguientes comandos:
+
+```bash
+nvm install 22.2.0
+nvm use 22.2.0
+```
+
+## Instalación
+
+Para instalar las dependencias del proyecto, ejecuta:
+
+```bash
+npm install
+```
+
+## Ejecución
+
+Para iniciar el servidor de desarrollo, ejecuta:
+
+```bash
+npm run dev
+```
+
+Una vez que el servidor esté en funcionamiento, podrás acceder al proyecto en la ruta indicada en la salida del comando.
