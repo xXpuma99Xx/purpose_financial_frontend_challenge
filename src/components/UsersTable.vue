@@ -30,7 +30,7 @@
           </TableBodyCell>
 
           <TableBodyCell>
-            <Button variant="danger" size="small" @click="eliminar(user)">
+            <Button variant="danger" size="small" @click="eliminar(index)">
               Eliminar
             </Button>
           </TableBodyCell>
@@ -108,21 +108,48 @@ export default defineComponent({
   },
   data() {
     return {
-      users: null as User[] | null,
+      users: [] as User[],
       tableHeaders: ["Name", "Username", "Email", "Details", ""],
       filaExpandida: null as number | null,
     };
   },
   methods: {
-    eliminar: (user: User) => {
-      console.log(`Eliminar ${user.id}`);
+    eliminar(index: number) {
+      if (index > -1) this.users.splice(index, 1);
+      this.filaExpandida = null;
+      this.saveData();
     },
     masDetalles(index: number) {
       this.filaExpandida = this.filaExpandida === index ? null : index;
     },
+    saveData() {
+      const usersJson = JSON.stringify(this.users);
+
+      localStorage.setItem("data", usersJson);
+    },
   },
   async created() {
-    this.users = await getUsers<User[]>("/users");
+    const storedData = localStorage.getItem("data");
+
+    if (storedData) {
+      let arr: User[] = [];
+
+      try {
+        arr = JSON.parse(storedData);
+        if (!Array.isArray(arr)) {
+          console.error("El dato recuperado no es un array");
+          arr = [];
+        }
+      } catch (e) {
+        console.error("Error al parsear el JSON", e);
+        arr = [];
+      }
+      this.users = arr;
+    }
+    if (this.users.length === 0) {
+      this.users = await getUsers<User[]>("/users");
+      this.saveData();
+    }
   },
 });
 </script>

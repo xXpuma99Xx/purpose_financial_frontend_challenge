@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import Buscador from "../views/Buscador.vue";
 
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
   {
     path: "/buscador",
     name: "Buscador",
-    component: Home,
+    component: Buscador,
   },
   {
     path: "/cv",

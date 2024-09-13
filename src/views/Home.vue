@@ -2,8 +2,14 @@
   <UsersTable />
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 import UsersTable from "../components/UsersTable.vue";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "Home",
+  components: { UsersTable },
+});
 </script>
 
 <style scoped></style>
