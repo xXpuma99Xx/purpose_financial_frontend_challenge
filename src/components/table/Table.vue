@@ -6,8 +6,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { User } from "../types";
-import { getUsers } from "../services";
+import { User } from "../../types";
+import { getUsers } from "../../services/usersHTTP";
 import TableHeaderCell from "./TableHeaderCell.vue";
 import TableHeader from "./TableHeader.vue";
 import TableBody from "./TableBody.vue";

@@ -82,16 +82,16 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { User } from "../types";
-import { getUsers } from "../services/";
-import Box from "./Box.vue";
-import Button from "./Button.vue";
-import Table from "./Table.vue";
-import TableBody from "./TableBody.vue";
-import TableBodyCell from "./TableBodyCell.vue";
-import TableBodyRow from "./TableBodyRow.vue";
-import TableHeader from "./TableHeader.vue";
-import TableHeaderCell from "./TableHeaderCell.vue";
-import Typography from "./Typography.vue";
+import { getUsers } from "../services/usersHTTP";
+import Box from "./common/Box.vue";
+import Button from "./common/Button.vue";
+import Table from "./Table/Table.vue";
+import TableBody from "./Table/TableBody.vue";
+import TableBodyCell from "./Table/TableBodyCell.vue";
+import TableBodyRow from "./Table/TableBodyRow.vue";
+import TableHeader from "./Table/TableHeader.vue";
+import TableHeaderCell from "./Table/TableHeaderCell.vue";
+import Typography from "./common/Typography.vue";
 
 export default defineComponent({
   name: "UsersTable",
