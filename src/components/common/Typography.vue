@@ -27,7 +27,13 @@ export default defineComponent({
     },
     color: {
       type: String as PropType<
-        "primary" | "secondary" | "danger" | "success" | "warning" | "gray"
+        | "primary"
+        | "secondary"
+        | "danger"
+        | "success"
+        | "warning"
+        | "gray"
+        | "white"
       >,
       default: "gray",
     },
@@ -78,6 +84,8 @@ export default defineComponent({
           return "text-green-500";
         case "warning":
           return "text-yellow-500";
+        case "white":
+          return "text-white";
         case "gray":
         default:
           return "text-gray-700";
@@ -97,7 +105,9 @@ export default defineComponent({
       }
     },
     underlineClasses() {
-      return this.underline ? "underline cursor-pointer hover:text-gray-400" : "";
+      return this.underline
+        ? "underline cursor-pointer hover:text-gray-400"
+        : "";
     },
   },
 });

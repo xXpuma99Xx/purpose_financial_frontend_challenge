@@ -1,14 +1,16 @@
 <template>
-  <PokemonSearch />
+  <Box margin="none" class="mb-4">
+    <slot></slot>
+  </Box>
 </template>
 
 <script lang="ts">
-import PokemonSearch from "../components/PokemonSearch.vue";
 import { defineComponent } from "vue";
+import Box from "../common/Box.vue";
 
 export default defineComponent({
-  name: "Buscador",
-  components: { PokemonSearch },
+  name: "CardBody",
+  components: { Box },
 });
 </script>
 

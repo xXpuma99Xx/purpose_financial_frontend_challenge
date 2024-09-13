@@ -4,8 +4,10 @@
       'px-4 py-2 font-semibold text-white rounded-md focus:outline-none',
       variantClasses,
       sizeClasses,
+      { 'opacity-50 cursor-not-allowed': disabled },
     ]"
     :type="type"
+    :disabled="disabled"
     @click="handleClick"
   >
     <slot></slot>
@@ -34,6 +36,10 @@ export default defineComponent({
       type: Function as PropType<(event: MouseEvent) => void>,
       default: () => {},
     },
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     variantClasses() {
@@ -61,7 +67,9 @@ export default defineComponent({
   },
   methods: {
     handleClick(event: MouseEvent) {
-      this.onClick(event);
+      if (!this.disabled) {
+        this.onClick(event);
+      }
     },
   },
 });

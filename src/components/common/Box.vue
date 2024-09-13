@@ -1,7 +1,7 @@
 <template>
-  <div :class="boxClasses">
+  <component :is="tag" :class="boxClasses">
     <slot></slot>
-  </div>
+  </component>
 </template>
 
 <script lang="ts">
@@ -10,6 +10,12 @@ import { defineComponent, PropType } from "vue";
 export default defineComponent({
   name: "Box",
   props: {
+    tag: {
+      type: String as PropType<
+        "div" | "section" | "article" | "aside" | "header" | "footer"
+      >,
+      default: "div",
+    },
     padding: {
       type: String as PropType<"none" | "sm" | "md" | "lg" | "xl">,
       default: "md",
@@ -32,6 +38,14 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    border: {
+      type: Boolean,
+      default: false,
+    },
+    borderColor: {
+      type: String as PropType<"gray" | "blue" | "red" | "green">,
+      default: "gray",
+    },
     customClasses: {
       type: String,
       default: "",
@@ -45,75 +59,53 @@ export default defineComponent({
         this.bgColorClasses,
         this.borderRadiusClasses,
         this.shadow ? "shadow-md" : "",
+        this.border ? `border border-${this.borderColor}-500` : "",
         this.customClasses,
       ].join(" ");
     },
     paddingClasses() {
-      switch (this.padding) {
-        case "none":
-          return "p-0";
-        case "sm":
-          return "p-2";
-        case "lg":
-          return "p-8";
-        case "xl":
-          return "p-12";
-        case "md":
-        default:
-          return "p-4";
-      }
+      const sizes = {
+        none: "p-0",
+        sm: "p-2",
+        md: "p-4",
+        lg: "p-6",
+        xl: "p-8",
+      };
+      return sizes[this.padding] || sizes.md;
     },
     marginClasses() {
-      switch (this.margin) {
-        case "none":
-          return "m-0";
-        case "sm":
-          return "m-2";
-        case "lg":
-          return "m-8";
-        case "xl":
-          return "m-12";
-        case "md":
-        default:
-          return "m-4";
-      }
+      const sizes = {
+        none: "m-0",
+        sm: "m-2",
+        md: "m-4",
+        lg: "m-6",
+        xl: "m-8",
+      };
+      return sizes[this.margin] || sizes.md;
     },
     bgColorClasses() {
-      switch (this.bgColor) {
-        case "white":
-          return "bg-white";
-        case "gray":
-          return "bg-gray-200";
-        case "primary":
-          return "bg-blue-500";
-        case "secondary":
-          return "bg-gray-500";
-        case "danger":
-          return "bg-red-500";
-        case "transparent":
-        default:
-          return "bg-transparent";
-      }
+      const colors = {
+        white: "bg-white",
+        gray: "bg-gray-200",
+        primary: "bg-blue-500",
+        secondary: "bg-gray-500",
+        danger: "bg-red-500",
+        transparent: "bg-transparent",
+      };
+      return colors[this.bgColor] || colors.transparent;
     },
     borderRadiusClasses() {
-      switch (this.borderRadius) {
-        case "none":
-          return "rounded-none";
-        case "sm":
-          return "rounded-sm";
-        case "lg":
-          return "rounded-lg";
-        case "full":
-          return "rounded-full";
-        case "md":
-        default:
-          return "rounded-md";
-      }
+      const radii = {
+        none: "rounded-none",
+        sm: "rounded-sm",
+        md: "rounded-md",
+        lg: "rounded-lg",
+        full: "rounded-full",
+      };
+      return radii[this.borderRadius] || radii.md;
     },
   },
 });
 </script>
 
-<style scoped>
-/* Agrega estilos adicionales si es necesario */
-</style>
+<style scoped></style>
